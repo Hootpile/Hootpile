@@ -1,0 +1,278 @@
+html {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.4;
+}
+.logged_out_page_big_signup {
+    background-color: #418bbc;
+    background-repeat: no-repeat;
+    overflow-y: hidden;
+}
+body {
+    color: #333;
+    font-size: 13px;
+    height: 100%;
+    overflow-x: auto;
+    overflow-y: scroll;
+    word-wrap: break-word;
+}
+body {
+    margin: 0;
+}
+
+.ContentWrapper:before, .ContentWrapper:after {
+    content: "";
+    display: table;
+}
+.ContentWrapper:after {
+    clear: both;
+}
+.ContentWrapper:before, .ContentWrapper:after {
+    content: "";
+    display: table;
+}
+.logged_out_page_big_signup .ContentWrapper {
+    height: 100%;
+    overflow: scroll;
+    padding: 0;
+    position: absolute;
+    width: 100%;
+}
+.ContentWrapper {
+    margin: 0 auto;
+    padding: 70px 10px 0;
+    width: 1000px;
+}
+.logged_out_page_big_signup .ContentWrapper .HomeLoggedOutBigSignup {
+    bottom: 0;
+    height: 400px;
+    left: 0;
+    margin: auto;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 650px;
+}
+
+.logged_out_page_big_signup .ContentWrapper .HomeLoggedOutBigSignup .logo {
+    background-image: url("http://www.hootpile.com/images/logo.png");
+    background-size: cover;
+    float: left;
+    height: 109px;
+    width: 110px;
+}
+
+.logged_out_page_big_signup .ContentWrapper .HomeLoggedOutBigSignup .tagline {
+    color: #fff;
+    float: left;
+    font-size: 19px;
+    line-height: 1.3;
+    margin-left: 16px;
+    margin-top: 10px;
+}
+
+.logged_out_page_big_signup .ContentWrapper .HomeLoggedOutBigSignup .tagline h1 {
+    color: #fff;
+    display: block;
+    font-size: 26px;
+    font-weight: bold;
+}
+h1, h2, h3, h4, h5, h6, ul, ol, li {
+    margin: 0;
+    padding: 0;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-size: inherit;
+    margin: 0;
+}
+
+.logged_out_page_big_signup .ContentWrapper .HomeLoggedOutBigSignup .tagline h2 {
+    font-weight: 400;
+}
+.logged_out_page_big_signup .ContentWrapper .HomeLoggedOutBigSignup .container:before, .logged_out_page_big_signup .ContentWrapper .HomeLoggedOutBigSignup .container:after {
+    content: "";
+    display: table;
+}
+.logged_out_page_big_signup .ContentWrapper .HomeLoggedOutBigSignup .container:after {
+    clear: both;
+}
+.logged_out_page_big_signup .ContentWrapper .HomeLoggedOutBigSignup .container:before, .logged_out_page_big_signup .ContentWrapper .HomeLoggedOutBigSignup .container:after {
+    content: "";
+    display: table;
+}
+.logged_out_page_big_signup .ContentWrapper .HomeLoggedOutBigSignup .container {
+    background: none repeat scroll 0 0 #fff;
+    border-radius: 3px;
+    box-sizing: border-box;
+    margin-top: 150px;
+    padding: 22px;
+    width: 100%;
+}
+.logged_out_page_big_signup .ContentWrapper .HomeLoggedOutBigSignup .container .signup {
+    border-right: 1px solid #e2e2e2;
+    padding-right: 32px;
+}
+.logged_out_page_big_signup .ContentWrapper .HomeLoggedOutBigSignup .container .signup, .logged_out_page_big_signup .ContentWrapper .HomeLoggedOutBigSignup .container .login {
+    box-sizing: border-box;
+    float: left;
+    width: 50%;
+}
+
+.logged_out_page_big_signup .ContentWrapper .HomeLoggedOutBigSignup .container .signup .signup_email_link {
+    color: #538dc2;
+}
+a {
+    color: #2b6dad;
+    text-decoration: none;
+}
+a {
+    background: none repeat scroll 0 0 transparent;
+}
+
+.small_tos, .tos_disclaimer {
+    color: #999;
+    font-size: 15px;
+	position:relative;
+}
+.small_tos a, .tos_disclaimer a {
+    color: #999;
+}
+.logged_out_page_big_signup .ContentWrapper .HomeLoggedOutBigSignup .container .login {
+    padding-left: 32px;
+    position: relative;
+}
+.logged_out_page_big_signup .ContentWrapper .HomeLoggedOutBigSignup .container .signup, .logged_out_page_big_signup .ContentWrapper .HomeLoggedOutBigSignup .container .login {
+    box-sizing: border-box;
+    float: left;
+    width: 50%;
+}
+.logged_out_page_big_signup .ContentWrapper .HomeLoggedOutBigSignup .container h2, .logged_out_page_big_signup .ContentWrapper .HomeLoggedOutBigSignup .container .title {
+    border-bottom: 0 none;
+    color: #666;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.logged_out_page_big_signup .ContentWrapper .HomeLoggedOutBigSignup .container .login .regular_login .header_login_text_box {
+    font-size: 15px;
+    line-height: 1.4;
+    margin-bottom: 8px;
+    min-height: 32px;
+    padding-left: 8px;
+    padding-right: 8px;
+    width: 100%;
+}
+input[type="text"], input[type="password"] {
+    height: 15px;
+    padding: 3px;
+    width: 150px;
+}
+input[type="text"], input[type="number"], input[type="password"], textarea, .fake_editor, .qtext_editor_content {
+    background: none repeat scroll 0 0 #fff;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    box-shadow: 0 1px 1px rgba(200, 200, 200, 0.3) inset;
+    box-sizing: border-box;
+    min-height: 27px;
+    outline: 0 none;
+    transition: border-color 0.2s ease 0s;
+}
+input[type="text"], input.text {
+    outline: 0 none;
+}
+input[type="text"], input.text {
+    outline: 0 none;
+}
+button, input, optgroup, select, textarea {
+    color: #333;
+}
+input {
+    line-height: normal;
+}
+button, input, optgroup, select, textarea {
+    color: inherit;
+    font: inherit;
+    margin: 0;
+}
+input::-moz-placeholder {
+    color: #999;
+}
+
+.logged_out_page_big_signup .ContentWrapper .HomeLoggedOutBigSignup .container .login .regular_login .remember_me, .logged_out_page_big_signup .ContentWrapper .HomeLoggedOutBigSignup .container .login .regular_login .forgot_password {
+    color: #999;
+}
+
+.logged_out_page_big_signup .ContentWrapper .HomeLoggedOutBigSignup .container .login .regular_login .passwordless_checkbox {
+    margin-right: 4px;
+}
+input[type="checkbox"], input[type="radio"] {
+    box-sizing: border-box;
+    padding: 0;
+}
+button, input, optgroup, select, textarea {
+    color: #333;
+}
+input {
+    line-height: normal;
+}
+button, input, optgroup, select, textarea {
+    color: inherit;
+    font: inherit;
+    margin: 0;
+}
+input::-moz-placeholder {
+    color: #999;
+}
+a {
+    color: #2b6dad;
+    text-decoration: none;
+}
+a {
+    background: none repeat scroll 0 0 transparent;
+}
+
+.logged_out_page_big_signup .ContentWrapper .HomeLoggedOutBigSignup .container .login .regular_login .submit_button {
+    float: right;
+    font-size: 15px;
+    line-height: 1.4;
+    margin-top: 8px;
+}
+button, html input[type="button"], input[type="reset"], input[type="submit"] {
+    cursor: pointer;
+}
+.submit_button, .primary_button {
+    -moz-user-select: none;
+    background: none repeat scroll 0 0 #2b6dad;
+    border: 1px solid #4f5863;
+    border-radius: 3px;
+    box-shadow: 0 1px 1px 0 rgba(200, 200, 200, 0.2);
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 500;
+    outline: 0 none;
+    padding: 3px 7px 4px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 100ms ease-in-out 0s;
+}
+button, input, optgroup, select, textarea {
+    color: #333;
+}
+input {
+    line-height: normal;
+}
+button, input, optgroup, select, textarea {
+    color: inherit;
+    font: inherit;
+    margin: 0;
+}
+.logged_out_page_big_signup .ContentWrapper .HomeLoggedOutBigSignup .spacer {
+    clear: both;
+}
