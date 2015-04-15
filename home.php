@@ -1,5 +1,9 @@
 <?php
 $conn = mysqli_connect("localhost","root","","users") or die(mysql_error());
+if(!$conn)
+{
+die("Unable to connect to database");
+}
 session_start();
 if (isset($_SESSION['user_login'])) {
 $user = $_SESSION["user_login"];
@@ -8,22 +12,34 @@ else {
 $user = "";
 }
 if (!isset($_SESSION["user_login"])) {
-    echo "<meta http-equiv=\"refresh\" content=\"0; url=hootpile/index.php\">";
+    echo "<meta http-equiv=\"refresh\" content=\"0; url=/index.php\">";
 }
 else
 {
 }
 ?>
 <?php
-$name = mysqli_query($conn,"SELECT name,username FROM users WHERE username='$user'");
+$name = mysqli_query($conn,"SELECT name,username FROM users2 WHERE username='$user'");
 $row = mysqli_fetch_array($name,MYSQLI_ASSOC);
 $name = $row['name'];
 $username = $row['username'];
+
+$post = @$_POST['post'];
+if ($post != "") {
+$date_added = date("Y-m-d");
+$added_by = $user;
+$user_posted_to = $user;
+
+$sqlCommand = "INSERT INTO posts VALUES('', '$post','$date_added','$added_by','$user_posted_to')";  
+$query = mysqli_query($conn,$sqlCommand) or die (mysql_error()); 
+
+}
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 <title>Hootpile</title>
+<link type="image/x-icon" rel="shortcut icon" href="http://www.hootpile.com/images/favicon.ico"/>
 <style type="text/css">
 html {
 	 font-family: "AtlasTypewriterRegular","Andale Mono","Consolas","Lucida Console","Menlo","Luxi Mono",monospace;
@@ -153,34 +169,96 @@ html {
 	color:black;
 	text-decoration:underline;
 }
+.post_form {
+	margin-left:230px;
+	margin-bottom: 30px;
+}
+.post_form textarea {
+	font-size: 16px;
+  padding: 10px 30px;
+}
+
+#updateboxarea {
+    background-color: #ffffff;
+    border: 1px solid #d6d7da;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    padding: 12px;
+    width: 330px;
+}
+#update {
+    border: 1px solid #bdc7d8;
+    font-size: 13px;
+    height: 50px;
+    margin-top: 5px;
+    padding: 5px;
+    width: 300px;
+}
+#controlButtons {
+height:45px;
+}
+.floatRight {
+    float: right;
+}
+
+.wallbutton {
+    background-color: #5fcf80;
+    border-color: #3ac162;
+    border-style: solid;
+    border-width: 1px 1px 3px !important;
+    color: #fff !important;
+    cursor: pointer;
+    margin-top:10px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 7px 9px;
+}
+
+#what {
+    text-align: left;
+}
 </style>
 </head>
 <body>
 <div id="featurebar" class="featurebar">
 <p class="featurebar__links">
 <span>Hootpile Beta</span>
-<a class="fb_link" href="#">About</a>
+<a class="fb_link" href="/home.php">Home</a>
 <a class="fb_link" href="/<?php echo $username ?>"><?php echo $name ?></a>
-<a class="fb_link" href="/hootpile/Notes">Notes</a>
-<a class="fb_link" href="/hootpile/logout.php">Logout</a>
+<a class="fb_link" href="/Settings">Settings</a>
+<a class="fb_link" href="/logout.php">Logout</a>
 </p>
-</div><br><br><br>
+</div><br><br>
 <div class="div_left">
 <a href="/hootpile">
-<img src="/hootpile/small.png" width="140px" height="" style="" alt="Hootpile">
+<img src="/images/small.png" width="140px" height="" style="" alt="Hootpile">
 </a><br>
 <a href="#" id="manifesto" onclick="read();">Read the manifesto</a>
+<br>
+<a href="/editprofile" id="manifesto">Edit Profile</a>
 <br>
 <div class="manifesto" style="height: auto;">
 <p id="read"></p>
 </div>
+<div id="updateboxarea">
+<p>Share what is happening in VIT.</p>
+<textarea id="update" name="update"></textarea>
+<div id="controlButtons">
+<span class="floatRight">
+<input id="update_button" class="update_button wallbutton update_box" type="submit" value=" Update "></input>
+</span>
+</div>
+</div>
+
 </div>
 <script type="text/javascript">
+var i=0;
 function read(){
-	document.getElementById('read').innerHTML="Hootpile is social utility that is <br>trying to transform how students at<br> VIT University connect wth each other.<br><br>Hootpile is free from advertising, <br>manipulation and exploitation.<br><br>While we realize this, we need your <br>support to spread the word. Share Hootpile's Manifesto on your social networks and <br>let's make this a great product. ";
+	document.getElementById('read').innerHTML="Hootpile is social utility that is <br>trying to transform how students at<br> VIT University connect with each other.<br><br>Hootpile is free from advertising, <br>manipulation and exploitation.<br><br>While we realize this, we need your <br>support to spread the word. Share Hootpile's Manifesto on your social networks and <br>let's make this a great product. ";
+
 }
 </script>
-<br>
 <div class="div_right">
 <?php
 //If the user is logged in
@@ -206,7 +284,7 @@ while ($row = mysqli_fetch_array($getposts,MYSQLI_ASSOC)) {
 	 <div class='post-content'>
 <div class='content'>
 <img src='https://d324imu86q1bqn.cloudfront.net/uploads/user/avatar/46407/ello-large-a74c9662.png' id='post_photo' alt=''></img>
-<a href='/hootpile/$added_by'>@$added_by</a>
+<a href='/$added_by'>@$added_by</a>
 <p>$body</p>
 </div>
 </div></article>
