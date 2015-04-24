@@ -1,5 +1,5 @@
 <?php
-$conn = mysqli_connect("localhost","rahulkapoor28","Rahulkapoor!28","subscribers");
+$conn = mysqli_connect("localhost","","","subscribers");
 ?>
 <?php
 if (isset($_GET['u'])) {
@@ -21,11 +21,27 @@ if (isset($_GET['u'])) {
 }
 ?>
 <?php
- $get_info = mysqli_query($conn,"SELECT bio FROM users2 WHERE username='$username'");
+ $get_info = mysqli_query($conn,"SELECT * FROM users2 WHERE username='$username'");
   $get_row = mysqli_fetch_assoc($get_info);
   $bio = $get_row['bio'];
-  if(isset($_POST['send'])){
-  $post = @$_POST['post'];
+  $tagline = $get_row['tagline'];
+  $name = $get_row['name'];
+  $school = $get_row['branch'];
+   $member = $get_row['member'];
+  $brag = $get_row['brag'];
+  $facebook = $get_row['facebook'];
+  $twitter = $get_row['twitter'];
+  $other = $get_row['other'];
+  $gender = $get_row['gender'];
+  $birthday = $get_row['birthday'];
+  $relation = $get_row['relation'];
+  $block = $get_row['block'];
+  $mobile = $get_row['mobile'];
+  $address = $get_row['address'];
+  $register = $get_row['register'];
+?>
+<?php
+$post = @$_POST['post'];
 if ($post != "") {
 $date_added = date("Y-m-d");
 $added_by = $user;
@@ -35,12 +51,54 @@ $sqlCommand = "INSERT INTO posts VALUES('', '$post','$date_added','$added_by','$
 $query = mysqli_query($conn,$sqlCommand) or die (mysql_error()); 
 
 }
-}
 ?>
+<?php
+ $get_user_info = mysqli_query($conn,"SELECT profile_pic FROM users2 WHERE username='$username'");
+                                                $get_info = mysqli_fetch_assoc($get_user_info);
+                                                $profilepic_info = $get_info['profile_pic'];
+                                                if ($profilepic_info == "") {
+                                                 $profilepic_info = "http://www.hootpile.com/images/default_hootpile.png";
+                                                }
+                                                else
+                                                {
+                                                 $profilepic_info = "http://www.hootpile.com/userdata/profile_pics/".$profilepic_info;
+                                                }
+                                                ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title><?php echo $name; ?></title>
+<title><?php echo $name; ?> | Hootpile</title>
+<meta charset="utf-8">
+<meta content="noodp,noydir" name="robots">
+<meta content="The latest Hoots from <?php echo $name; ?> (@<?php echo $username; ?>), student at VIT University. <?php echo $bio; ?>" name="description">
+<meta itemprop="name" content="<?php echo $username; ?> | Hootpile"/>
+<meta itemprop="description" content="The latest Hoots from <?php echo $name; ?> (@<?php echo $username; ?>), student at VIT University. <?php echo $bio; ?>"/>
+<meta itemprop="image" content="<?php echo $profilepic_info; ?>"/>
+<meta name="twitter:card" content="<?php echo $bio; ?>"/>
+<meta name="twitter:site" content="Hootpile"/>
+<meta name="twitter:title" content="<?php echo $username; ?> | Hootpile">
+<meta name="twitter:description" content="The latest Hoots from <?php echo $name; ?> (@<?php echo $username; ?>), student at VIT University. <?php echo $bio; ?>"/>
+<meta name="twitter:creator" content="<?php echo $username; ?> "/>
+<meta name="twitter:image:src" content="<?php echo $profilepic_info; ?>"/>
+<meta name="twitter:domain" content="http://www.hootpile.com/<?php echo $username; ?>"/>
+<meta property="og:type" content="profile"/>
+<meta property="profile:username" content="<?php echo $username; ?>"/>
+<meta property="og:title" content="<?php echo $username; ?> | Hootpile"/>
+<meta property="og:description" content="The latest Hoots from <?php echo $name; ?> (@<?php echo $username; ?>), student at VIT University. <?php echo $bio; ?>"/>
+<meta property="og:image" content="<?php echo $profilepic_info; ?>"/>
+<meta property="og:url" content="http://www.hootpile.com/<?php echo $username; ?>"/>
+<meta property="og:site_name" content="Hootpile"/>
+<meta property="og:see_also" content="http://www.hootpile.com"/>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-61341818-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
 <link type="image/x-icon" rel="shortcut icon" href="http://www.hootpile.com/images/favicon.ico"/>
 <style type="text/css">
 html {
@@ -82,7 +140,7 @@ html {
 	text-decoration:underline;
 }
 .div_left {
-	width: 20%; 
+	width: 40%; 
 	float:left;
 }
 .main_logo {
@@ -91,7 +149,7 @@ html {
     z-index: 2;
 }
 .div_right {
-	width: 80%; 
+	width: 60%; 
 	float:right;
 	
 }
@@ -184,9 +242,9 @@ html {
 
 	position: relative;
 	text-align: center;
-	width: 20%;
 	margin-left: 40px;
 	padding: 15px;
+	width:350px;
 	background: rgb(54, 25, 25);
 	background: rgba(240, 240, 240, .8);
   
@@ -205,8 +263,7 @@ html {
 #content {
 
 	position: relative;
-  text-align: center;
-	background: #F0F0F0;
+	background: #fff;
 	padding: 20px;
 	height: 50%;
 
@@ -216,26 +273,15 @@ html, body {
 	width: 100%;
 	height: 100%;
 	margin: 0;	
-	background: #F0F0F0;
 	
 }
 #profile_link {
 color: #8899a6;
 }
-.div_left {
-	width: 40%; 
-	float:left;
-	margin-bottom:232px;
-}
 .main_logo {
     position: relative;
     width: 3.75rem;
     z-index: 2;
-}
-.div_right {
-	width: 60%; 
-	float:right;
-	
 }
 .SignupCallOut {
     background-color: #8899a6;
@@ -243,6 +289,8 @@ color: #8899a6;
     border-radius: 6px;
     padding: 15px;
     width: 300px;
+    margin-top:10px;
+    margin-left:45px;
 }
 .SignupCallOut-title {
     color: #fff;
@@ -271,29 +319,6 @@ color: #8899a6;
   overflow:auto;
 }
 
-#textarea {
-   float:left;
-	height: 28px;
-	width: 212px;
-	padding: 0 10px;
-	background: rgba(0, 0, 0, 0.2);
-	border-radius: 3px;
-	box-shadow: inset 0px 4px rgba(0, 0, 0, 0.2);
-  border:none;
-
-	
-	/* Typography */
-  font-family:'open sans';
-	font-size: 17px;
-	line-height: 1.2em;
-	color: white;
-	text-align: center;
-   outline:none;
-  word-spacing: -1px;
-  padding-top:12px;
-   transition: all 0.2s ease;
-}
-
 #button{
   position:relative;
   background: #35bf65;
@@ -318,40 +343,98 @@ color: #8899a6;
 	top: 4px;
 	box-shadow: none;
 }
+a{ 
+color:black;
+text-decoration:none;
+}
+a:hover {
+text-decoration:underline;
+}
+.divone, .divtwo {
+display:inline-block;
+}
+#updateboxarea {
+    background-color: #ffffff;
+    border: 1px solid #d6d7da;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    padding: 12px;
+        width: 450px;
+        margin-left:80px;
+}
+#update {
+    border: 1px solid #bdc7d8;
+    font-size: 13px;
+    height: 55px;
+    margin-top: 5px;
+    padding: 5px;
+    width: 410px;
+}
+#controlButtons {
+height:45px;
+}
+.floatRight {
+    float: right;
+}
+
+.wallbutton {
+    background-color: #5fcf80;
+    border-color: #3ac162;
+    border-style: solid;
+    border-width: 1px 1px 3px !important;
+    color: #fff !important;
+    cursor: pointer;
+    margin-top:10px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 7px 9px;
+}
+th {
+font-weight:normal;
+}
 </style>
 </head>
 <body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3&appId=442861082492923";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 <div id="featurebar" class="featurebar">
 <p class="featurebar__links">
 <span>Hootpile Beta</span>
 <?php
 session_start();
 if (!isset($_SESSION["user_login"])) {
-echo '<a class="fb_link" href="/home.php">Home</a>
+echo '<a class="fb_link" href="">Home</a>
+<a class="fb_link" href="https://docs.google.com/forms/d/1_KWStVBhPNeskXHdtzrdBn_b7nYF530V-zBiuhXow6o/viewform">Feedback</a>
 <a class="fb_link" href="/index.php">Log In</a>
 <a class="fb_link" href="/register">Register</a>';
 }
 else
 {
 echo '<a class="fb_link" href="/home.php">Home</a>
+<a class="fb_link" href="/editprofile">Edit Profile</a>
 <a class="fb_link" href="/Settings">Settings</a>
 <a class="fb_link" href="/logout.php">Logout</a>';
 }
 ?>
 </p>
 </div><br><br>
-	<div> <!-- User background -->
-		<img style="position: absolute; top: 0px; right: 0px;" src="https://pbs.twimg.com/profile_banners/2603557026/1404484222/1500x500" width="100%" height="585px">
-	</div>
-
+	<div class="div_left">
 	<div id="about"> <!-- User profile -->
-	  <img src="https://d324imu86q1bqn.cloudfront.net/uploads/user/avatar/46407/ello-large-a74c9662.png" width="200px" height="200px">
+	  <img src="<?php echo $profilepic_info ?>" width="200" height="200" alt="<?php echo $username;?>">
 	  <h2><?php echo $name; ?></h2>
 	  <p><?php echo $bio; ?></p>
-	</div>
-	
-	<div id="content"> <!-- User Content -->
-	<div class="div_left">
+	  <p>Student at VIT University.</p>
+                                   <div class="fb-share-button" data-href="http://www.hootpile.com/<?php echo $username; ?>" data-layout="button_count"></div>
+                                   <div class="fb-send" data-href="http://www.hootpile.com/<?php echo $username; ?>" data-colorscheme="light"></div>
+                              </div>
+	  
 	<?php
 if (!isset($_SESSION["user_login"])) {
 echo '
@@ -360,59 +443,104 @@ echo '
 <h3 class="SignupCallOut-title u-textBreak">
 Are you from VIT University ? Sign Up Now.
 </h3>
-</div></div>';}
+</div></div><br>';}
 else {
-echo '
-<div id="container">
+echo '';
+}?>
+<img src="http://i.imgur.com/JPMyxfL.png" width="300" style="margin-left:30px;" alt="VIT University SITE">
+<div style="background-color: #EEEEF1; width:300px; padding:20px 30px; margin-left:30px;">
+<p><img class="_51sw img" src="https://www.facebook.com/images/profile/timeline/app_icons/info_24.png" alt="SJT" title="SJT"> Story of <?php echo $name; ?></p><hr>
+<p style="font-weight:bold;">Tagline</p>
+<?php echo $tagline; ?>
+<p style="font-weight:bold;">School</p>
+<?php echo $school; ?>
+<p style="font-weight:bold;">Core Commitee Member</p>
+<?php echo $member; ?>
+<p style="font-weight:bold;">Bragging Rights/Achievements</p>
+<?php echo $brag; ?>
+
+</div>
+<br>
+<div style="background-color: #EEEEF1; width:300px; padding:20px 30px; margin-left:30px;">
+<p>Links</p><hr>
+<strong>Hootpile URL</strong><br>
+<a href="http://www.hootpile.com/<?php echo $username; ?>">hootpile/<?php echo $username; ?></a><br>
+<p style="font-weight:bold;"><img class="xfa" alt="" src="//s2.googleusercontent.com/s2/favicons?domain=www.facebook.com&amp;alt=p"> Facebook</p>
+<a href="<?php echo $facebook; ?>"><?php echo $facebook; ?></a><br>
+<p style="font-weight:bold;"><img class="xfa" alt="" src="//s2.googleusercontent.com/s2/favicons?domain=www.twitter.com&amp;alt=p"> Twitter</p>
+<a href="<?php echo $twitter; ?>"><?php echo $twitter; ?></a><br>
+<p style="font-weight:bold;">Other Profiles</p>
+<a href="<?php echo $other; ?>"><?php echo $other; ?></a>
+</p>
+</div><br>
+<div style="background-color: #EEEEF1; width:300px; padding:20px 30px; margin-left:30px;">
+<p>Basic Information</p><hr>
+<p>Gender: <?php echo $gender; ?></p>
+<p>Birthday: <?php echo $birthday; ?></p>
+<p>Relationship: <?php echo $relation; ?></p>
+</div><br>
+<div style="background-color: #EEEEF1; width:300px; padding:20px 30px; margin-left:30px;">
+<p>Contact Information</p><hr>
+<p style="font-weight:bold;">Hostel Block & Room</p>
+<?php echo $block; ?>
+<p style="font-weight:bold;">Mobile No: </p>
+<?php echo $mobile; ?>
+<p style="font-weight:bold;">Home Address: </p>
+<?php echo $address; ?>
+</div><br><br>
+	</div>
+
+<div class="div_right">
+<div style="background-color: #EEEEF1; width:550px; padding:20px 30px;">
+<p><img class="_51sw img" src="https://www.facebook.com/images/profile/timeline/app_icons/info_24.png" alt="SJT" title="SJT"> About <?php echo $name; ?></p><hr>
+<table>
+<tr>
+<td>
+<p style="font-weight:bold;text-align:center;">Register</p>
+</td>
+<td>
+<p style="font-weight:bold;text-align:center;">School</p>
+</td>
+<td>
+<p style="font-weight:bold;text-align:center;">Achivements</p>
+</td>
+</tr>
+<tr>
+<th><?php echo $register; ?></th>
+<th><?php echo $school; ?></th>
+<th><?php echo $brag; ?></th>
+</table>
+</div>
+<br><br>
+	<?php
+if (!isset($_SESSION["user_login"])) {
+echo '';}
+else {
+echo '<div id="updateboxarea">
+<p>Share on his/her Profile, talk to other VITians through this.</p>
 <form action="" method="post">
-    <input id = "button" name="send" type="submit" value="Hoot" />
-  <textarea id = "textarea" name="post">What are you thinking?</textarea>
-</form>  
+<textarea id="update" name="post"></textarea>
+<div id="controlButtons">
+<span class="floatRight">
+<input id="update_button" class="update_button wallbutton update_box" type="submit" name="send" value=" Update "></input>
+</span>
+</div>
+</form>
 </div>';
 }?>
-<div class="">
-<p>Basic Information</p>
-</div>
-	</div>
-<script type="text/javascript">
-var button = document.getElementById("button");
-var textarea = document.getElementById("textarea");
-var initValue = textarea.value;
-
-/***********Events****************************/
-button.addEventListener('onclick', function(){
-  return false;}, false);
-
-
-textarea.addEventListener("click", function(){
-  this.style.height=100 + 'px';
-  this.style.paddingTop = 10 + 'px';
-  this.style.textAlign = 'left';
- 
-  if (this.value ===initValue){
-    //this.setSelectionRange(0, 0);
-     this.value = '';
-   }
-}, false);
-  
-
-textarea.addEventListener("blur", function(){
-  if (textarea.value=='' || textarea.value ==initValue){ 
-    textarea.style.height=''; 
-    textarea.value = initValue;
-      textarea.style.textAlign = 'center';
-  }
-}, false);
-</script>
-	<div class="div_right">
 	<?php
 //If the user is logged in
 $getposts = mysqli_query($conn,"SELECT * FROM posts WHERE user_posted_to='$username' ORDER BY id DESC LIMIT 10") or die(mysql_error());
 $posts = mysqli_num_rows($getposts);
 if($posts == 0){
-	echo "
-	
-	";
+	echo "<article class='post'>
+	 <div class='post-content'>
+<div class='content'>
+<img src='http://www.hootpile.com/images/small.png' id='post_photo' alt=''></img>
+<a href='/$added_by'>@hootpile</a>
+<p>$username's News Feed is currently empty, other VITians haven't started interacting with you yet!<br>but you can start posting on your friends profile or learn more on my profile.</p>
+</div>
+</div></article><br>";
 }
 else {
 while ($row = mysqli_fetch_array($getposts,MYSQLI_ASSOC)) {
@@ -424,11 +552,25 @@ while ($row = mysqli_fetch_array($getposts,MYSQLI_ASSOC)) {
 						$get_user_info = mysqli_query($conn,"SELECT * FROM users WHERE username='$added_by'");
                                                 $get_info = mysqli_fetch_assoc($get_user_info);
                                                 $name = $get_info['name'];
+                                                 $get_user_info = mysqli_query($conn,"SELECT profile_pic FROM users2 WHERE username='$added_by'");
+                                                $get_info = mysqli_fetch_assoc($get_user_info);
+                                                $profilepic_info3 = $get_info['profile_pic'];
+                                                if ($profilepic_info3 == "") {
+                                                 $profilepic_info3 = "http://www.hootpile.com/images/default_hootpile.png";
+                                                }
+                                                else
+                                                {
+                                                 $profilepic_info3 = "http://www.hootpile.com/userdata/profile_pics/".$profilepic_info3;
+                                                }
+                                                $reg_exUrl = "/(http|https|ftp|ftps|www)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/";
+                                                if(preg_match($reg_exUrl, $body, $url)) {
+                                                $body = preg_replace($reg_exUrl, "<a href='{$url[0]}' id='post_link'>{$url[0]}</a> ", $body);
+                                                }
 	 echo "
 	 <article class='post'>
 	 <div class='post-content'>
 <div class='content'>
-<img src='https://d324imu86q1bqn.cloudfront.net/uploads/user/avatar/46407/ello-large-a74c9662.png' id='post_photo' alt=''></img>
+<img src='$profilepic_info3' id='post_photo' alt='$username'>
 <a href='/$added_by'>@$added_by</a>
 <p>$body</p>
 </div>
@@ -437,5 +579,4 @@ while ($row = mysqli_fetch_array($getposts,MYSQLI_ASSOC)) {
 	 }
 }
 ?>
-	</div>
 	</div>
